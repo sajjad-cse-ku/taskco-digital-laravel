@@ -99,7 +99,10 @@
                     <i class="bi bi-plus-circle"></i>
                     <span>Create Post</span>
                 </a>
-
+                <a href="{{ route('frontend.blogposts.index') }}" target="_blank" class="btn btn-light border d-flex align-items-center gap-2">
+                    <i class="bi bi-globe2 fs-5"></i>
+                    <span>Visit Website</span>
+                </a>
                 <a href="{{ route('admin.logout') }}" class="btn btn-outline-danger d-flex align-items-center gap-2">
                     <i class="bi bi-box-arrow-right"></i>
                     <span>Logout</span>

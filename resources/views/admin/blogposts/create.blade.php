@@ -12,7 +12,7 @@
 
             <div class="mb-4">
                 <label for="title" class="form-label fw-semibold">Post Title <span class="text-danger">*</span></label>
-                <input type="text" id="title" name="title" value="{{ old('title') }}" class="form-control @error('title') is-invalid @enderror" required>
+                <input type="text" id="title" name="title" value="{{ old('title') }}" class="form-control @error('title') is-invalid @enderror">
                 @error('title')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -28,7 +28,7 @@
 
             <div class="mb-4">
                 <label for="content" class="form-label fw-semibold">Content <span class="text-danger">*</span></label>
-                <textarea id="content" name="content" rows="6" class="form-control @error('content') is-invalid @enderror" required>{{ old('content') }}</textarea>
+                <textarea id="content" name="content" rows="6" class="form-control @error('content') is-invalid @enderror">{{ old('content') }}</textarea>
                 @error('content')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

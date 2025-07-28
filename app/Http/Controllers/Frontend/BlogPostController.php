@@ -15,7 +15,6 @@ class BlogPostController extends Controller
             if ($request->search) {
                 $query->where('title', 'like', "%{$request->search}%");
             }
-
             $posts = $query->orderBy('id', 'desc')->paginate(5);
             return view('frontend.blogposts.partials.posts_list', compact('posts'))->render();
         }else{
