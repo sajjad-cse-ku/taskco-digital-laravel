@@ -3,9 +3,9 @@
 @section('styles')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
     <style>
-        /* Hover row highlight */
-        table.table-hover tbody tr:hover {
-            background-color: #f1f5f9;
+        /* Table styling */
+        .table-hover tbody tr:hover {
+            background-color: #e9f0ff;
             cursor: pointer;
         }
 
@@ -13,13 +13,16 @@
         .btn-icon {
             border: none;
             background: none;
-            padding: 0.2rem 0.5rem;
-            font-size: 1.25rem;
+            padding: 0.25rem 0.5rem;
+            font-size: 1.3rem;
             color: #0d6efd;
-            transition: color 0.3s ease;
+            transition: color 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
         .btn-icon:hover {
-            color: #0a58ca;
+            color: #084cd9;
             text-decoration: none;
         }
 
@@ -31,22 +34,53 @@
             color: #a71d2a;
         }
 
-        /* Responsive table wrapper */
-        .table-responsive {
-            overflow-x: auto;
+        /* Tooltip container */
+        .btn-icon[title]:hover::after {
+            content: attr(title);
+            position: absolute;
+            background: rgba(0,0,0,0.75);
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            pointer-events: none;
+            transform: translateY(-125%);
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
         }
 
-        /* Skeleton shimmer */
+        /* Responsive */
+        .table-responsive {
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        /* Skeleton shimmer animation */
         @keyframes shimmer {
-            0% { background-position: -200px 0; }
-            100% { background-position: 200px 0; }
+            0% { background-position: -250px 0; }
+            100% { background-position: 250px 0; }
         }
         .skeleton-shimmer {
-            animation: shimmer 1.5s infinite linear;
-            background: linear-gradient(90deg, #e0e0e0 25%, #f8f8f8 50%, #e0e0e0 75%);
-            background-size: 400% 100%;
+            animation: shimmer 1.6s infinite linear;
+            background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+            background-size: 500% 100%;
             background-repeat: no-repeat;
             color: transparent !important;
+            border-radius: 4px;
+        }
+
+        /* Search input width on smaller screens */
+        @media (max-width: 576px) {
+            #search {
+                width: 100% !important;
+                margin-top: 0.75rem;
+            }
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 @endsection
@@ -55,13 +89,26 @@
     <div class="container py-4">
         <h1 class="mb-4">Admin - Blog Posts</h1>
 
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <a href="{{ route('admin.blogposts.create') }}" class="btn btn-success">+ Create New Post</a>
-            <input type="text" id="search" class="form-control w-50" placeholder="Search by title...">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+            <div class="flex-grow-1">
+                <input type="text" id="search" class="form-control" placeholder="🔍 Search posts by title..." autocomplete="off">
+            </div>
+
+            <div class="d-flex gap-2 flex-wrap">
+                <a href="{{ route('admin.blogposts.create') }}" class="btn btn-outline-primary d-flex align-items-center gap-2">
+                    <i class="bi bi-plus-circle"></i>
+                    <span>Create Post</span>
+                </a>
+
+                <a href="{{ route('admin.logout') }}" class="btn btn-outline-danger d-flex align-items-center gap-2">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
         </div>
 
-        <!-- Success Alert -->
-        @if(session('success'))
+
+    @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -69,30 +116,29 @@
         @endif
 
         <div class="table-responsive">
-            <table class="table table-hover align-middle">
-                <thead class="table-light">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light text-uppercase small">
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Title</th>
-                    <th scope="col" style="min-width:120px;">Author</th>
-                    <th scope="col" style="min-width:140px;">Created At</th>
-                    <th scope="col" class="text-center" style="min-width:100px;">Actions</th>
+                    <th scope="col" style="min-width: 140px;">Author</th>
+                    <th scope="col" style="min-width: 160px;">Created At</th>
+                    <th scope="col" class="text-center" style="width: 110px;">Actions</th>
                 </tr>
                 </thead>
-                <tbody id="postsTableBody">
+                <tbody id="postsTableBody" role="rowgroup">
                 @include('admin.blogposts.partials.posts_table', ['posts' => $posts])
                 </tbody>
             </table>
         </div>
 
-        <nav id="paginationNav">
+        <nav id="paginationNav" class="mt-3">
             {{ $posts->links('pagination::bootstrap-5') }}
         </nav>
 
         <!-- Skeleton loader -->
-        <div id="skeletonLoader" style="display:none;">
-            <div class="table-responsive">
-                <table class="table align-middle">
+        <div id="skeletonLoader" style="display:none;" aria-live="polite" aria-busy="true">
+            <div class="table-responsive mt-3" aria-hidden="true">
+                <table class="table align-middle mb-0">
                     <thead class="table-light">
                     <tr>
                         <th>#</th><th>Title</th><th>Author</th><th>Created At</th><th>Actions</th>
@@ -101,13 +147,13 @@
                     <tbody>
                     @for ($i=0; $i < 6; $i++)
                         <tr>
-                            <td class="skeleton-shimmer" style="width:30px; height:1.2rem;"></td>
-                            <td class="skeleton-shimmer" style="height:1.2rem;"></td>
-                            <td class="skeleton-shimmer" style="width:120px; height:1rem;"></td>
-                            <td class="skeleton-shimmer" style="width:140px; height:1rem;"></td>
-                            <td>
-                                <span class="btn-icon skeleton-shimmer" style="width:24px; height:24px; display:inline-block; border-radius:4px;"></span>
-                                <span class="btn-icon skeleton-shimmer" style="width:24px; height:24px; display:inline-block; border-radius:4px; margin-left:10px;"></span>
+                            <td><span class="skeleton-shimmer d-inline-block" style="width:24px; height:1.3rem;"></span></td>
+                            <td><span class="skeleton-shimmer d-block" style="height:1.3rem; border-radius:4px;"></span></td>
+                            <td><span class="skeleton-shimmer d-inline-block" style="width:120px; height:1.2rem; border-radius:4px;"></span></td>
+                            <td><span class="skeleton-shimmer d-inline-block" style="width:140px; height:1.2rem; border-radius:4px;"></span></td>
+                            <td class="text-center">
+                                <span class="btn-icon skeleton-shimmer" style="width:26px; height:26px; display:inline-block; border-radius:6px;"></span>
+                                <span class="btn-icon skeleton-shimmer ms-3" style="width:26px; height:26px; display:inline-block; border-radius:6px;"></span>
                             </td>
                         </tr>
                     @endfor
@@ -120,7 +166,7 @@
 
 @section('scripts')
     <script>
-        $(document).ready(function () {
+        $(function () {
             const $searchInput = $('#search');
             const $postsTableBody = $('#postsTableBody');
             const $paginationNav = $('#paginationNav');
@@ -134,8 +180,9 @@
                 $skeletonLoader.show();
 
                 $.ajax({
-                    url: `{{ route('admin.blogposts.index') }}?page=${page}&search=${search}`,
+                    url: `{{ route('admin.blogposts.index') }}`,
                     method: 'GET',
+                    data: { page, search },
                     dataType: 'json',
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest'
@@ -146,7 +193,7 @@
                         $skeletonLoader.hide();
 
                         attachDeleteHandlers();
-                        attachRowClick();
+                        attachRowClickHandlers();
                     },
                     error: function () {
                         $skeletonLoader.hide();
@@ -158,7 +205,7 @@
 
             $searchInput.on('keyup', function () {
                 clearTimeout(typingTimer);
-                typingTimer = setTimeout(function () {
+                typingTimer = setTimeout(() => {
                     fetchPosts(1, $searchInput.val());
                 }, doneTypingInterval);
             });
@@ -189,19 +236,21 @@
                 });
             }
 
-            function attachRowClick() {
-                $('#postsTableBody tr').off('click').on('click', function () {
-                    const editUrl = $(this).data('edit-url');
-                    if (editUrl) {
-                        window.location.href = editUrl;
+            function attachRowClickHandlers() {
+                // Only trigger row click if not clicking on action buttons
+                $('#postsTableBody tr').off('click').on('click', function (e) {
+                    if ($(e.target).closest('.btn-icon, .btn-delete-post').length === 0) {
+                        const editUrl = $(this).data('edit-url');
+                        if (editUrl) {
+                            window.location.href = editUrl;
+                        }
                     }
                 });
             }
 
-            // Initial binding
+            // Initial setup
             attachDeleteHandlers();
-            attachRowClick();
+            attachRowClickHandlers();
         });
     </script>
 @endsection
-

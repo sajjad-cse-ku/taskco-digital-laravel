@@ -1,33 +1,48 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1>Edit Blog Post</h1>
+    <div class="container py-5" style="max-width: 720px;">
+        <div class="mb-4">
+            <h1 class="h3 text-primary fw-bold mb-2">📝 Edit Blog Post</h1>
+            <p class="text-muted">Make changes to the blog post and click "Update" to save.</p>
+        </div>
 
-        <form action="{{ route('admin.blogposts.update', $blogpost) }}" method="POST">
+        <form action="{{ route('admin.blogposts.update', $blogpost) }}" method="POST" class="bg-white border rounded shadow-sm p-4">
             @csrf
             @method('PUT')
 
-            <div class="mb-3">
-                <label>Title</label>
-                <input type="text" name="title" value="{{ old('title', $blogpost->title) }}" class="form-control" required>
-                @error('title')<small class="text-danger">{{ $message }}</small>@enderror
+            <div class="mb-4">
+                <label for="title" class="form-label fw-semibold">Post Title <span class="text-danger">*</span></label>
+                <input type="text" id="title" name="title" value="{{ old('title', $blogpost->title) }}" class="form-control @error('title') is-invalid @enderror" required>
+                @error('title')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
-            <div class="mb-3">
-                <label>Author</label>
-                <input type="text" name="author" value="{{ old('author', $blogpost->author) }}" class="form-control">
-                @error('author')<small class="text-danger">{{ $message }}</small>@enderror
+            <div class="mb-4">
+                <label for="author" class="form-label fw-semibold">Author</label>
+                <input type="text" id="author" name="author" value="{{ old('author', $blogpost->author) }}" class="form-control @error('author') is-invalid @enderror">
+                @error('author')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
-            <div class="mb-3">
-                <label>Content</label>
-                <textarea name="content" rows="5" class="form-control" required>{{ old('content', $blogpost->content) }}</textarea>
-                @error('content')<small class="text-danger">{{ $message }}</small>@enderror
+            <div class="mb-4">
+                <label for="content" class="form-label fw-semibold">Content <span class="text-danger">*</span></label>
+                <textarea id="content" name="content" rows="6" class="form-control @error('content') is-invalid @enderror" required>{{ old('content', $blogpost->content) }}</textarea>
+                @error('content')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
-            <button class="btn btn-primary">Update</button>
-            <a href="{{ route('admin.blogposts.index') }}" class="btn btn-secondary">Back</a>
+            <div class="d-flex justify-content-between">
+                <a href="{{ route('admin.blogposts.index') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Back
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-check-circle"></i> Update Post
+                </button>
+            </div>
         </form>
     </div>
 @endsection

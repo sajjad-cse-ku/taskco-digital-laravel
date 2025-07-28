@@ -35,7 +35,8 @@
             <h2 class="fw-bold text-primary">🔐 Login</h2>
             <p class="text-muted small">Access your account securely</p>
         </div>
-        <form action="#" method="POST">
+        <form action="{{ route('login.post') }}" method="POST">
+            @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
                 <input type="email" id="email" name="email" class="form-control" required autofocus>
