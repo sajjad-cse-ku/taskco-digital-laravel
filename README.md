@@ -27,7 +27,7 @@ Welcome to the **Laravel Blog Project**!
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/your-laravel-project.git
+git clone [https://github.com/your-username/your-laravel-project.git](https://github.com/sajjad-cse-ku/taskco-digital-laravel.git)
 cd your-laravel-project
 ````
 
@@ -35,7 +35,6 @@ cd your-laravel-project
 
 ```bash
 composer install
-npm install && npm run dev
 ```
 
 ### 3️⃣ Configure Environment
