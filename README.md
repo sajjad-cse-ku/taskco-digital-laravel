@@ -1,13 +1,3 @@
-Here’s a professional `README.md` template for a **Laravel GitHub project**, including:
-
-* Setup instructions
-* Required images (add your own URLs)
-* A video demo link
-* Syntax-highlighted commands
-
----
-
-````md
 # 🚀 Laravel Project Setup Guide
 
 Welcome to the **Laravel Blog Project**! This repository contains a complete Laravel application built with best practices, featuring API integration, authentication, CRUD, pagination, and much more.
