@@ -59,7 +59,7 @@ Password: password
 ---
 
 ## 🎥 Demo Video
-👉 [Watch the Full Demo on YouTube](https://www.youtube.com/watch?v=VeNfHj6MhgA&t=9025s&ab_channel=TraversyMedia)
+👉 [Watch the Full Demo on YouTube](https://youtu.be/0CzPQNo2qHY)
 
 ## 📸 Screenshots
 
