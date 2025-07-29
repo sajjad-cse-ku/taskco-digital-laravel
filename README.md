@@ -10,11 +10,12 @@ Welcome to the **Laravel Blog Project**!
 
 ## 📸 Screenshots
 
-### 🏠 Home Page
-![Home Page](https://usairticket.com/wp-content/uploads/2025/07/screencapture-127-0-0-1-8000-blogposts-100-2025-07-29-12_43_15.png)
 
-### 🏠 Detail Page
+### 🏠 Home Page
 ![Home Page](https://usairticket.com/wp-content/uploads/2025/07/screencapture-127-0-0-1-8000-2025-07-29-12_43_06.png)
+
+### 🚀 Detail Page
+![Home Page](https://usairticket.com/wp-content/uploads/2025/07/screencapture-127-0-0-1-8000-blogposts-100-2025-07-29-12_43_15.png)
 
 ### 🛠️ Admin Panel
 ![Admin Panel](https://usairticket.com/wp-content/uploads/2025/07/screencapture-127-0-0-1-8000-admin-blogposts-2025-07-29-12_41_29.png)
