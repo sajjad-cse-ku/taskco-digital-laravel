@@ -8,7 +8,7 @@ Welcome to the **Laravel Blog Project**!
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone [https://github.com/your-username/your-laravel-project.git](https://github.com/sajjad-cse-ku/taskco-digital-laravel.git)
+git clone https://github.com/sajjad-cse-ku/taskco-digital-laravel.git
 cd your-laravel-project
 ````
 
