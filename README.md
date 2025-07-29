@@ -17,7 +17,7 @@ Welcome to the **Laravel Blog Project**!
 ![Home Page](https://prnt.sc/VBEJgzfCrIs_)
 
 ### 🛠️ Admin Panel
-![Admin Panel](https://yourdomain.com/screenshots/admin.png)
+![Admin Panel](https://usairticket.com/wp-content/uploads/2025/07/screencapture-127-0-0-1-8000-admin-blogposts-2025-07-29-12_41_29.png)
 
 ---
 
