@@ -5,7 +5,6 @@ Welcome to the **Laravel Blog Project**!
 ---
 
 ## 🎥 Demo Video
-[![Watch the Demo](https://img.youtube.com/vi/VeNfHj6MhgA/maxresdefault.jpg)](https://www.youtube.com/watch?v=VeNfHj6MhgA&t=9025s)
 👉 [Watch the Full Demo on YouTube](https://www.youtube.com/watch?v=VeNfHj6MhgA&t=9025s&ab_channel=TraversyMedia)
 
 ## 📸 Screenshots
