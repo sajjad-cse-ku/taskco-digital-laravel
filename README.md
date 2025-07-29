@@ -6,15 +6,15 @@ Welcome to the **Laravel Blog Project**!
 
 ## 🎥 Demo Video
 
-👉 [Watch the Full Demo on YouTube](https://www.youtube.com/watch?v=your-video-id)
+👉 [Watch the Full Demo on YouTube](https://www.youtube.com/watch?v=VeNfHj6MhgA&t=9025s&ab_channel=TraversyMedia)
 
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home Page](https://prnt.sc/19fFMgoSRnUz)
+![Home Page](https://usairticket.com/wp-content/uploads/2025/07/screencapture-127-0-0-1-8000-blogposts-100-2025-07-29-12_43_15.png)
 
 ### 🏠 Detail Page
-![Home Page](https://prnt.sc/VBEJgzfCrIs_)
+![Home Page](https://usairticket.com/wp-content/uploads/2025/07/screencapture-127-0-0-1-8000-2025-07-29-12_43_06.png)
 
 ### 🛠️ Admin Panel
 ![Admin Panel](https://usairticket.com/wp-content/uploads/2025/07/screencapture-127-0-0-1-8000-admin-blogposts-2025-07-29-12_41_29.png)
